@@ -1,36 +1,26 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { type Todo, TodoStatus } from '../types'
+import { TodoStatus } from '../types'
+import useTodos from '@/store/useTodos'
 interface Props {
   status: TodoStatus
 }
 const props = defineProps<Props>()
 
-const pendingTodos: Todo[] = [
-  {
-    id: 1,
-    title: 'Learn Vue.js',
-    description: 'Learn the basics of Vue.js',
-    status: TodoStatus.Pending
-  },
-  {
-    id: 2,
-    title: 'Build a Vue.js App',
-    description: 'Learn how to build a Vue.js app',
-    status: TodoStatus.Pending
-  }
-]
+const { getTodosByStatus } = useTodos()
+
+const todoList = getTodosByStatus(props.status)
 
 const groupLabel = computed(() => {
   switch (props.status) {
     case TodoStatus.Pending:
-      return 'Todos'
+      return 'ToDos'
     case TodoStatus.InProgress:
       return 'In Progress'
     case TodoStatus.Completed:
       return 'Completed'
     default:
-      return ''
+      return 'Todo Group'
   }
 })
 </script>
@@ -39,7 +29,7 @@ const groupLabel = computed(() => {
   <div>
     <h3>{{ groupLabel }}</h3>
     <ul>
-      <li v-for="todo in pendingTodos" v-bind:key="todo.id">{{ todo.title }}</li>
+      <li v-for="todo in todoList" v-bind:key="todo.id">{{ todo.title }}</li>
     </ul>
   </div>
 </template>
