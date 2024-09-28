@@ -14,13 +14,25 @@ const defaultVal = {
       title: 'Learn Vue.js',
       description: 'Learn the basics of Vue.js',
       status: TodoStatus.Pending
+    },
+    {
+      id: 4,
+      title: 'Learn Java for backend',
+      description: 'Learn the basics of Java',
+      status: TodoStatus.Pending
     }
   ],
   [TodoStatus.InProgress]: [
     {
-      id: 1,
+      id: 11,
       title: 'Progressing Vue.js',
       description: 'Learning Vue.js concepts',
+      status: TodoStatus.InProgress
+    },
+    {
+      id: 11,
+      title: 'Progressing Java backend!',
+      description: 'Learning Java concepts',
       status: TodoStatus.InProgress
     }
   ],
@@ -30,12 +42,19 @@ const defaultVal = {
       title: 'Build a Vue.js App',
       description: 'Learn how to build a Vue.js app',
       status: TodoStatus.Completed
+    },
+    {
+      id: 7,
+      title: 'Built a little app with Java',
+      description: 'Built Java app',
+      status: TodoStatus.Completed
     }
   ]
 }
+
 const todoStore = reactive<TodoStore>(defaultVal)
 
-export default () => {
+export const useTodosStore = () => {
   const getTodosByStatus = (todoStatus: TodoStatus) => {
     return computed(() => todoStore[todoStatus])
   }
