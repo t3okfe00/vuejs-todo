@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
 import { TodoStatus } from '../types'
 import { useTodosStore } from '@/store/useTodos'
+import CreateToDo from './CreateToDo.vue'
 interface Props {
   status: TodoStatus
 }
@@ -24,6 +24,8 @@ const groupLabel = {
     <ul>
       <li v-for="todo in todoList" v-bind:key="todo.id">{{ todo.title }}</li>
     </ul>
+
+    <CreateToDo></CreateToDo>
   </div>
 </template>
 
@@ -39,7 +41,7 @@ div {
   transition:
     transform 0.3s,
     box-shadow 0.3s; /* Transition for hover effects */
-  border: 5px solid var(--color-primary-green);
+  border: 3.5px solid var(--color-primary-green);
   opacity: 0.7;
 }
 

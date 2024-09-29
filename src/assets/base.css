@@ -89,3 +89,108 @@ body {
 li {
   list-style: none;
 }
+
+input {
+  padding: 0.75rem 1rem; /* Adds padding for a comfortable touch */
+  font-size: 1rem; /* Adjusts font size */
+  border-radius: 8px; /* Adds smooth corners */
+  border: 1px solid var(--color-border); /* Default border */
+  background-color: var(--color-background-soft); /* Softer background */
+  color: var(--color-text); /* Text color */
+  outline: none; /* Removes default outline */
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease; /* Smooth transition for hover or focus states */
+}
+
+input:focus {
+  border-color: var(--color-border-hover); /* Change border color on focus */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow on focus */
+}
+
+textarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background-soft);
+  color: var(--color-text);
+  line-height: 1.6;
+  outline: none;
+  resize: vertical; /* Allow vertical resizing */
+  box-shadow: none;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+
+textarea::placeholder {
+  color: var(--vt-c-text-light-2); /* A lighter shade for the placeholder */
+}
+
+textarea:focus {
+  border-color: var(--color-border-hover);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+textarea:disabled {
+  background-color: var(--color-background-mute);
+  color: var(--vt-c-text-light-2);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+textarea:invalid {
+  border-color: red;
+}
+
+textarea {
+  max-width: 100%; /* Ensure it doesn't overflow its container */
+  min-height: 120px; /* Set a comfortable default height */
+}
+
+@media (prefers-color-scheme: dark) {
+  textarea {
+    background-color: var(--color-background-soft);
+    color: var(--color-text);
+  }
+}
+
+button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--color-primary-green); /* Primary button color */
+  color: var(--color-background); /* Text color */
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+button:hover {
+  opacity: 0.8;
+  transition: opacity 0.4s ease;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* More pronounced shadow on hover */
+}
+
+button:focus {
+  outline: 2px solid var(--color-border-hover); /* Focus outline */
+  outline-offset: 2px;
+}
+
+button:active {
+  transform: translateY(2px); /* Slight button press effect */
+}
+
+button:disabled {
+  background-color: var(--color-border); /* Muted color for disabled button */
+  cursor: not-allowed;
+  opacity: 0.6;
+}
