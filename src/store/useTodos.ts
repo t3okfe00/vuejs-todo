@@ -59,5 +59,12 @@ export const useTodosStore = () => {
     return computed(() => todoStore[todoStatus])
   }
 
-  return { getTodosByStatus }
+  const addNewTodo = (newTodo: Todo) => {
+    todoStore[newTodo.status].push(newTodo)
+  }
+
+  const deleteToDo = (todo: Todo) => {
+    todoStore[todo.status] = todoStore[todo.status].filter((t) => t.id !== todo.id)
+  }
+  return { getTodosByStatus, addNewTodo, deleteToDo }
 }

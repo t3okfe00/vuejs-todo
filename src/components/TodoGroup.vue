@@ -2,12 +2,13 @@
 import { TodoStatus } from '../types'
 import { useTodosStore } from '@/store/useTodos'
 import CreateToDo from './CreateToDo.vue'
+import AppButton from './AppButton.vue'
 interface Props {
   status: TodoStatus
 }
 const props = defineProps<Props>()
 
-const { getTodosByStatus } = useTodosStore()
+const { getTodosByStatus, deleteToDo } = useTodosStore()
 
 const todoList = getTodosByStatus(props.status)
 
@@ -19,20 +20,24 @@ const groupLabel = {
 </script>
 
 <template>
-  <div>
+  <div id="todo">
     <h3>{{ groupLabel[props.status] }}</h3>
     <ul>
-      <li v-for="todo in todoList" v-bind:key="todo.id">{{ todo.title }}</li>
+      <div id="todo-list">
+        <li v-for="todo in todoList" v-bind:key="todo.id">
+          <AppButton :label="'x'" :size="'very-small'" @click="deleteToDo(todo)"></AppButton>
+          {{ todo.title }}
+        </li>
+      </div>
     </ul>
 
-    <CreateToDo></CreateToDo>
+    <CreateToDo :status="props.status"></CreateToDo>
   </div>
 </template>
 
 <style scoped>
-div {
+#todo {
   margin-bottom: 1rem;
-
   padding: 2rem; /* Padding inside the card */
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
@@ -44,7 +49,10 @@ div {
   border: 3.5px solid var(--color-primary-green);
   opacity: 0.7;
 }
-
+#todo-list {
+  display: flex;
+  flex-direction: column;
+}
 h3 {
   margin-bottom: 1rem;
   text-decoration: underline;
