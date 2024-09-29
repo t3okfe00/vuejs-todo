@@ -30,7 +30,7 @@ const defaultVal = {
       status: TodoStatus.InProgress
     },
     {
-      id: 11,
+      id: 12,
       title: 'Progressing Java backend!',
       description: 'Learning Java concepts',
       status: TodoStatus.InProgress
